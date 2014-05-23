@@ -12,17 +12,17 @@ import json
 import itertools
 import itertools as it
 
-try:
-    import numpy as np
-except: 
-    pass
-try:
-    import matplotlib.pyplot as plt
-except: 
-    pass
+#try:
+    #import numpy as np
+#except: 
+    #pass
+#try:
+    #import matplotlib.pyplot as plt
+#except: 
+    #pass
 
-if os.getenv("PYSTARTUP"):
-    pass
+#if os.getenv("PYSTARTUP"):
+    #pass
 
 parser = argparse.ArgumentParser()
 parser.add_argument('evaluation', nargs='?', default='None')
