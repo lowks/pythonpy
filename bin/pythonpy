@@ -37,7 +37,7 @@ parser.add_argument('-x' '--line_by_line',
     dest='line_by_line', action='store_const',
     const=True, default=False,
     help='sum the integers (default: find the max)')
-parser.add_argument('-csv' '--split_values', 
+parser.add_argument('-sv' '--split_values', 
     dest='split_values',
     default=False,
     help='sum the integers (default: find the max)')
@@ -82,7 +82,7 @@ elif args.list_of_stdin:
 elif args.filter_result:
     result = (x for x in stdin if eval(args.evaluation))
 elif args.split_values:
-    result = (eval(args.evaluation) for csv in (re.split(args.split_values, x) for x in stdin))
+    result = (eval(args.evaluation) for sv in (re.split(args.split_values, x) for x in stdin))
 else:
     result = eval(args.evaluation)
 
