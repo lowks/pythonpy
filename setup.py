@@ -5,6 +5,7 @@ setup(
     name='pythonpy',
     version='0.1.4',
     packages=['pythonpy',],
+    description='Command line utility for Python',
     scripts=[os.path.join('bin', 'pythonpy')],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.txt').read(),
