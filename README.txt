@@ -31,7 +31,7 @@ $ py 'random.random()'
 0.103173957713
 
 # multiply each line of input by 7.
-$ py 'range(3) | py -x 'int(x)*7'
+$ py 'range(3)' | py -x 'int(x)*7'
 0
 7
 14
@@ -68,7 +68,7 @@ $ py 'range(8)' | py -x 'x if int(x)%2 == 0 else None'
 
 # The shorthand -fx (filter on x) is also available.
 # get only odd numbers
-$ py 'range(8) | py -fx 'int(x)%2 == 1'
+$ py 'range(8)' | py -fx 'int(x)%2 == 1'
 1
 3
 5
