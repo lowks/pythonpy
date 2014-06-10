@@ -15,23 +15,23 @@ For a permanent alias (For Bash users):
 
 ::
 
-Float arithmetic
+Arithmetic
 ----------------
 
 ::
 
-  $ py '3 * 1.5'
-  4.5
+  $ py '24 * 60 ** 2'
+  86400
 
 ::
 
-Exponentiation
+Floating point
 --------------
 
 ::
 
-  $ py '7**3'
-  343
+  $ py '1.0/98'
+  0.010204081632 
 
 ::
 
