@@ -3,8 +3,16 @@ Installation
 
 ::
 
-  sudo pip install pythonpy; alias py='pythonpy'
+  sudo pip install pythonpy && alias py='pythonpy'
 
+::
+
+For a permanent alias (For Bash users):
+
+::
+
+  echo "alias py='pythonpy'" >> ~/.bashrc
+  
 ::
 
 Float arithmetic
