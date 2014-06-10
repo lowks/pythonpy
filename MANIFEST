@@ -2,4 +2,4 @@
 README.txt
 setup.py
 bin/pythonpy
-pythonpy/__init__.py
+test/test_pythonpy.py
