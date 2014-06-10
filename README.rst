@@ -12,7 +12,7 @@ For a permanent alias (For Bash users):
 ::
 
   echo "alias py='pythonpy'" >> ~/.bashrc
-  
+
 ::
 
 Float arithmetic
@@ -32,7 +32,7 @@ Exponentiation
 
   $ py '7**3'
   343
-  
+
 ::
 
 Number sequence
@@ -91,7 +91,7 @@ Multiply each line of input by 7.
   14
 
 ::
-  
+
 Append ".txt" to each line of input
 -----------------------------------
 
@@ -143,7 +143,7 @@ Count the lines of input
 Other times you just want to filter out lines from the input
 ------------------------------------------------------------
 
-Get only even numbers 
+Get only even numbers
 ~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -161,7 +161,7 @@ The shorthand -fx (filter on x) is also available
 
 Get only odd numbers
 ~~~~~~~~~~~~~~~~~~~~
-  
+
 ::
 
   $ py 'range(8)' | py -fx 'int(x)%2 == 1'
@@ -221,7 +221,7 @@ Get the local network ip
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
- 
+
   $ ifconfig | py -x --i 're.search(r"192\.168[\d\.]+", x).group()'
   192.168.1.41
 
