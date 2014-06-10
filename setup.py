@@ -4,7 +4,6 @@ import os
 setup(
     name='pythonpy',
     version='0.1.5',
-    packages=['pythonpy',],
     description='Command line utility for Python',
     scripts=[os.path.join('bin', 'pythonpy')],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
