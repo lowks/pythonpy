@@ -85,7 +85,7 @@ Multiply each line of input by 7.
 
 ::
 
-  $ py 'range(3) | py -x 'int(x)*7'
+  $ py 'range(3)' | py -x 'int(x)*7'
   0
   7
   14
@@ -164,7 +164,7 @@ Get only odd numbers
   
 ::
 
-  $ py 'range(8) | py -fx 'int(x)%2 == 1'
+  $ py 'range(8)' | py -fx 'int(x)%2 == 1'
   1
   3
   5
