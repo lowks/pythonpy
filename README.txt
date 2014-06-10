@@ -5,6 +5,10 @@ sudo pip install pythonpy; alias py='pythonpy'
 $ py '24 * 60 ** 2'
 86400
 
+# floating point numbers
+$ py '1.0/98'
+0.010204081632
+
 # number sequence
 $ py 'range(3)'
 0
