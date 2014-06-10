@@ -2,7 +2,9 @@ Installation
 ------------
 
 ::
+
   sudo pip install pythonpy; alias py='pythonpy'
+
 ::
 
 Float arithmetic
