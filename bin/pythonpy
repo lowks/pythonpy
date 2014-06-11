@@ -12,28 +12,32 @@ import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument('evaluation', nargs='?', default='None')
-parser.add_argument('-c', '--cmd')
-parser.add_argument('-x' '--line_by_line',
-                    dest='line_by_line', action='store_const',
+parser.add_argument('-x', dest='lines_of_stdin', action='store_const',
                     const=True, default=False,
-                    help='sum the integers (default: find the max)')
-parser.add_argument('-fx', '--filter',
-                    dest='filter_result', action='store_const',
-                    const=True, default=False)
-parser.add_argument('-l', '--list_of_stdin',
-                    dest='list_of_stdin', action='store_const',
-                    const=True, default=False)
+                    help='treat each row as x')
+parser.add_argument('-fx', dest='filter_result', action='store_const',
+                    const=True, default=False,
+                    help='keep rows satisfying condition(x)')
+parser.add_argument('-l', dest='list_of_stdin', action='store_const',
+                    const=True, default=False,
+                    help='treat list of stdin as l')
+parser.add_argument('-c', dest='cmd', help='run code before expression')
 parser.add_argument('--i', '--ignore_exceptions',
                     dest='ignore_exceptions', action='store_const',
-                    const=True, default=False)
-parser.add_argument('--si', '--split_input', dest='split_input')
-parser.add_argument('--so', '--split_output', dest='split_output')
+                    const=True, default=False,
+                    help='')
+parser.add_argument('--si', '--split_input', dest='split_input',
+                    help='pre-process each row with re.split(delimiter)')
+parser.add_argument('--so', '--split_output', dest='split_output',
+                    help='post-process each row with delimiter.join(row)')
 parser.add_argument('--ji' '--json_input',
                     dest='json_input', action='store_const',
-                    const=True, default=False)
+                    const=True, default=False,
+                    help='pre-process each row with json.loads(row)')
 parser.add_argument('--jo' '--json_output',
                     dest='json_output', action='store_const',
-                    const=True, default=False)
+                    const=True, default=False,
+                    help='post-process each row with json.dumps(row)')
 
 args = parser.parse_args()
 
@@ -52,7 +56,7 @@ if args.cmd:
 if args.cmd:
     exec(args.cmd)
 
-if args.line_by_line:
+if args.lines_of_stdin:
     if args.ignore_exceptions:
         def safe_eval(text, x):
             try:
