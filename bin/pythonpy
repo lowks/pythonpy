@@ -13,34 +13,34 @@ import sys
 parser = argparse.ArgumentParser()
 parser.add_argument('evaluation', nargs='?', default='None')
 parser.add_argument('-c', '--cmd')
-parser.add_argument('--ji' '--json_in',
-                    dest='json_input', action='store_const',
-                    const=True, default=False)
-parser.add_argument('--jo' '--json_out',
-                    dest='json_output', action='store_const',
-                    const=True, default=False)
 parser.add_argument('-x' '--line_by_line',
                     dest='line_by_line', action='store_const',
                     const=True, default=False,
                     help='sum the integers (default: find the max)')
-parser.add_argument('-sv' '--split_values',
-                    dest='split_values',
-                    default=False,
-                    help='sum the integers (default: find the max)')
-parser.add_argument('-l', '--list_of_stdin',
-                    dest='list_of_stdin', action='store_const',
-                    const=True, default=False)
 parser.add_argument('-fx', '--filter',
                     dest='filter_result', action='store_const',
                     const=True, default=False)
+parser.add_argument('-l', '--list_of_stdin',
+                    dest='list_of_stdin', action='store_const',
+                    const=True, default=False)
 parser.add_argument('--i', '--ignore_exceptions',
                     dest='ignore_exceptions', action='store_const',
+                    const=True, default=False)
+parser.add_argument('--si', '--split_input', dest='split_input')
+parser.add_argument('--so', '--split_output', dest='split_output')
+parser.add_argument('--ji' '--json_input',
+                    dest='json_input', action='store_const',
+                    const=True, default=False)
+parser.add_argument('--jo' '--json_output',
+                    dest='json_output', action='store_const',
                     const=True, default=False)
 
 args = parser.parse_args()
 
 if args.json_input:
     stdin = (json.loads(x.rstrip()) for x in sys.stdin)
+elif args.split_input:
+    stdin = (re.split(args.split_input, x.rstrip()) for x in sys.stdin)
 else:
     stdin = (x.rstrip() for x in sys.stdin)
 
@@ -67,21 +67,26 @@ elif args.list_of_stdin:
     result = eval(args.evaluation)
 elif args.filter_result:
     result = (x for x in stdin if eval(args.evaluation))
-elif args.split_values:
-    result = (eval(args.evaluation) for sv in
-              (re.split(args.split_values, x) for x in stdin))
 else:
     result = eval(args.evaluation)
 
+def format(output):
+    if output == None:
+        return None
+    elif args.json_output:
+        return json.dumps(output)
+    elif args.split_output:
+        return args.split_output.join(output)
+    else:
+        return output
+    
+
 if hasattr(result, '__iter__'):
     for x in result:
-        if x is not None:
-            if args.json_output:
-                print json.dumps(x)
-            else:
-                print x
-elif result is not None:
-    if args.json_output:
-        print json.dumps(result)
-    else:
-        print result
+        formatted = format(x)
+        if formatted:
+            print formatted
+else:
+    formatted = format(result)
+    if formatted:
+        print formatted
