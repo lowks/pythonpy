@@ -8,4 +8,5 @@ setup(
     scripts=[os.path.join('bin', 'pythonpy')],
     license='MIT',
     long_description=open('README.txt').read(),
+    url='https://github.com/Russell91/pythonpy',
 )
